@@ -1,0 +1,38 @@
+<div class="notebook">
+
+<div class="nb-cell program" name="p1">
+% Hechos: estudiante y su nota final en un curso
+nota(ana, 4.5).
+nota(luis, 2.8).
+nota(maria, 3.7).
+nota(juan, 5.0).
+nota(pedro, 2.3).
+
+%Define una regla reprueba, que sea cierta si un estudiante tiene menor a 3.0.
+reprueba(X):-nota(X,Y),Y&lt;3.0.
+
+%Define una regla aprueba, que sea cierta si un estudiante tiene nota mayor o igual a 3.0.
+aprueba(X):-nota(X,Y),Y&gt;=3.0.
+
+%Define una regla rango, donde rango(X, Min, Max) sea cierto si la nota de un estudiante X está entre Min y Max.
+rango(X, Min, Max):-nota(X,Y), Y&gt;=Min,Y=&lt;Max.
+
+%Define una regla clasificacion que asigne una categoría a cada estudiante según la nota:
+%0.0 – 2.9 → reprobado
+reprobado(X):-rango(X, 0.0, 2.9).
+
+%3.0 – 3.9 → aprobado
+aprobado(X):-rango(X, 3.0, 3.9).
+
+%4.0 – 4.4 → notable
+notable(X):-rango(X, 4.0, 4.4).
+
+%4.5 – 5.0 → excelente
+excelente(X):-rango(X, 4.5, 5.0).
+
+
+
+
+</div>
+
+</div>

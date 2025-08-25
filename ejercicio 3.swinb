@@ -1,0 +1,46 @@
+<div class="notebook">
+
+<div class="nb-cell program" data-background="true" data-below="true" name="p1">
+perro(firulais).
+perro(bruno).
+perro(max).
+gato(misu).
+gato(luna).
+gato(chanel).
+gato(orion).
+ave(piolin).
+
+dueno(ana, firulais).
+dueno(ana, misu).
+dueno(luis, luna).
+dueno(luis, orion).
+dueno(luis, firulais).
+dueno(maria, piolin).
+dueno(julia, chanel).
+dueno(pedro, bruno).
+
+%Define una regla que determine si una persona tiene un perro.
+tiene_perro(X,Y):-dueno(X,Y),perro(Y).
+
+%Define una regla que determine si una persona tiene un gato.
+tiene_gato(X,Y):-dueno(X,Y),gato(Y).
+
+tiene_ave(X,Y):-dueno(X,Y),ave(Y).
+
+%Define una regla que determine si una persona tiene multiples mascotas.
+mult(X) :- dueno(X,Y),dueno(X,Z),Y\=Z.
+
+%Define una regla amante_animales para identificar dueños que tienen tanto perro como gato.
+amante_animales(X):-tiene_perro(X,_),tiene_gato(X,_).
+
+%Define una regla mascota_compartida que indique si dos personas comparten mascota.
+mascota_compartida(X,Y):-dueno(X,W),dueno(Y,Z),W=Z,X\=Y.
+
+%Define una regla tipo_mascota que asocie una persona con el tipo de mascota que tiene (perro, gato, ave, etc.).
+tipo_mascota(X,perro):-tiene_perro(X,Y).
+tipo_mascota(X,gato):-tiene_gato(X,Y).
+tipo_mascota(X,ave):-tiene_ave(X,Y).
+
+</div>
+
+</div>
