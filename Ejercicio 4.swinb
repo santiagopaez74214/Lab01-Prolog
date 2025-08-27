@@ -1,0 +1,18 @@
+<div class="notebook">
+
+<div class="nb-cell program" name="p1">
+%Ejercicio 4 - Recursion simple
+fibonacci(0, 0).
+fibonacci(1, 1).
+fibonacci(X, N) :-        
+    N &gt; 1, 
+    N1 is N - 1,
+    N2 is N - 2,
+    fibonacci(X1, N1),     
+    fibonacci(X2, N2), 
+    N + 1
+    X is X1 + X2.
+
+</div>
+
+</div>
