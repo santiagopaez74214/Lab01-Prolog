@@ -30,8 +30,21 @@ notable(X):-rango(X, 4.0, 4.4).
 %4.5 – 5.0 → excelente
 excelente(X):-rango(X, 4.5, 5.0).
 
+%Define la regla distancia((X1, Y1), (X2, Y2), D), que calcule la distantia euclidiana entre dos puntos
+distancia((X1, Y1), (X2, Y2), D):- 
+    RestaX is X2 - X1,
+    RestaY is Y2 - Y1,
+    D is sqrt(RestaX * RestaX + RestaY * RestaY).
 
+% Caso base: lista vacía o con un solo punto -&gt; distancia 0
+distancia_total([], 0).
+distancia_total([_], 0).
 
+%distancia_total([P1, P2 | Resto], Total), que calcule la suma de distancias entre una lista puntos.
+distancia_total([P1, P2 | Resto], Total):-
+    distancia(P1, P2, D1),
+    distancia_total([P2 | Resto], D2),
+    Total is D1 + D2.
 
 </div>
 
