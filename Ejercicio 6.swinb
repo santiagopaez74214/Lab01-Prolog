@@ -14,7 +14,7 @@ longitud([_|X], N) :-
 
 %Escribe una regla "concatena" que dadas dos listas, las concatene en otra.
 concatenar([],L,L).
-concatenar([X|L1],L2,[X,L3]):- concatenar(L1,L2,L3).
+concatenar([X|L1],L2,[X|L3]):- concatenar(L1,L2,L3).
 
 %Escribe uan regla que determine el reverso de una lista.
 inversa(L1,X):- inversa(L1,[],X).
@@ -22,7 +22,18 @@ inversa([],X,X).
 inversa([X|L1],L2,L3):- inversa(L1,[X|L2],L3).
 
 %Escribe una regla que permite obtener en una lista los N elementos de las serie de fibonacci, usa la regla predifina append(L1,L2,L3), que concatena L1 y L2, en L3.
+fibo_lista(0, [0]).
+fibo_lista(1, [0,1]).
+fibo_lista(N, L) :-
+    N > 1,
+    N1 is N - 1,
+    fibo_lista(N1, L1),
+    anteriores(L1, A, B), 
+    Suma is A + B,
+    append(L1, [Suma], L).
 
+anteriores([A,B], A, B).
+anteriores([_|Resto], A, B):- anteriores(Resto, A, B).
 
 %Escribe una regla que determine si una lista es palindroma.
 es_palindroma(X):-inversa(X,X).
