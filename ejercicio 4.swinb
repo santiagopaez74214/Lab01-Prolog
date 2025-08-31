@@ -1,51 +1,31 @@
 <div class="notebook">
 
 <div class="nb-cell program" name="p1">
-% Hechos: estudiante y su nota final en un curso
-nota(ana, 4.5).
-nota(luis, 2.8).
-nota(maria, 3.7).
-nota(juan, 5.0).
-nota(pedro, 2.3).
+%Ejercicio 5 - 4 color problem
+%Faltaria definir la regla adjacent la cual valide la adyacencia valida.
+color(red).
+color(blue).
+color(yellow).
+color(green).
 
-%Define una regla reprueba, que sea cierta si un estudiante tiene menor a 3.0.
-reprueba(X):-nota(X,Y),Y&lt;3.0.
+arista(a,b).
+arista(a,d).
+arista(a,e).
+arista(c,b).
+arista(c,d).
+arista(c,e).
+arista(b,e).
+arista(b,d).
+arista(d,e).
 
-%Define una regla aprueba, que sea cierta si un estudiante tiene nota mayor o igual a 3.0.
-aprueba(X):-nota(X,Y),Y&gt;=3.0.
+adjacent(X,Y):-arista(X,Y).
+adjacent(X,Y):-arista(Y,X).
 
-%Define una regla rango, donde rango(X, Min, Max) sea cierto si la nota de un estudiante X está entre Min y Max.
-rango(X, Min, Max):-nota(X,Y), Y&gt;=Min,Y=&lt;Max.
-
-%Define una regla clasificacion que asigne una categoría a cada estudiante según la nota:
-%0.0 – 2.9 → reprobado
-reprobado(X):-rango(X, 0.0, 2.9).
-
-%3.0 – 3.9 → aprobado
-aprobado(X):-rango(X, 3.0, 3.9).
-
-%4.0 – 4.4 → notable
-notable(X):-rango(X, 4.0, 4.4).
-
-%4.5 – 5.0 → excelente
-excelente(X):-rango(X, 4.5, 5.0).
-
-%Define la regla distancia((X1, Y1), (X2, Y2), D), que calcule la distantia euclidiana entre dos puntos
-distancia((X1, Y1), (X2, Y2), D):- 
-    RestaX is X2 - X1,
-    RestaY is Y2 - Y1,
-    D is sqrt(RestaX * RestaX + RestaY * RestaY).
-
-% Caso base: lista vacía o con un solo punto -&gt; distancia 0
-distancia_total([], 0).
-distancia_total([_], 0).
-
-%distancia_total([P1, P2 | Resto], Total), que calcule la suma de distancias entre una lista puntos.
-distancia_total([P1, P2 | Resto], Total):-
-    distancia(P1, P2, D1),
-    distancia_total([P2 | Resto], D2),
-    Total is D1 + D2.
-
+map(A, B, C, D, E) :-
+    adjacent(A, B), adjacent(A, D), adjacent(A, E),
+    adjacent(B, C), adjacent(B, D), adjacent(B, E),
+    adjacent(C, D), adjacent(C, E),
+    adjacent(D, E).
 </div>
 
 </div>
