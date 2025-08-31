@@ -8,18 +8,10 @@ color(blue).
 color(yellow).
 color(green).
 
-arista(a,b).
-arista(a,d).
-arista(a,e).
-arista(c,b).
-arista(c,d).
-arista(c,e).
-arista(b,e).
-arista(b,d).
-arista(d,e).
-
-adjacent(X,Y):-arista(X,Y).
-adjacent(X,Y):-arista(Y,X).
+adjacent(X, Y) :-
+    color(X),
+    color(Y),
+    X \= Y.
 
 map(A, B, C, D, E) :-
     adjacent(A, B), adjacent(A, D), adjacent(A, E),
